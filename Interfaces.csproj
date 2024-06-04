@@ -49,6 +49,33 @@
     <Compile Include="Joao2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SOLID\DIP\QuebrandoRegra\Cliente.cs" />
+    <Compile Include="SOLID\DIP\QuebrandoRegra\Repositorio.cs" />
+    <Compile Include="SOLID\DIP\QuebrandoRegra\SMS.cs" />
+    <Compile Include="SOLID\DIP\QuebrandoRegra\Validacao.cs" />
+    <Compile Include="SOLID\DIP\Solucao\Cliente.cs" />
+    <Compile Include="SOLID\DIP\Solucao\IRepositorio.cs" />
+    <Compile Include="SOLID\DIP\Solucao\ISms.cs" />
+    <Compile Include="SOLID\DIP\Solucao\Repositorio.cs" />
+    <Compile Include="SOLID\DIP\Solucao\RepositorioEmTexto.cs" />
+    <Compile Include="SOLID\DIP\Solucao\Sms.cs" />
+    <Compile Include="SOLID\DIP\Solucao\SmsVivo.cs" />
+    <Compile Include="SOLID\DIP\Solucao\SmsOi.cs" />
+    <Compile Include="SOLID\DIP\Solucao\Validacao.cs" />
+    <Compile Include="SOLID\ISP\QuebrandoRegra\Fornecedor.cs" />
+    <Compile Include="SOLID\ISP\QuebrandoRegra\Produto.cs" />
+    <Compile Include="SOLID\ISP\QuebrandoRegra\Cliente.cs" />
+    <Compile Include="SOLID\ISP\QuebrandoRegra\IGenerica.cs" />
+    <Compile Include="SOLID\ISP\Solucao2\Cliente.cs" />
+    <Compile Include="SOLID\ISP\Solucao2\Fornecedor.cs" />
+    <Compile Include="SOLID\ISP\Solucao2\IGenerica.cs" />
+    <Compile Include="SOLID\ISP\Solucao2\IPagamento.cs" />
+    <Compile Include="SOLID\ISP\Solucao2\Produto.cs" />
+    <Compile Include="SOLID\ISP\Solucao\Cliente.cs" />
+    <Compile Include="SOLID\ISP\Solucao\Fornecedor.cs" />
+    <Compile Include="SOLID\ISP\Solucao\IPagamento.cs" />
+    <Compile Include="SOLID\ISP\Solucao\IGenerica.cs" />
+    <Compile Include="SOLID\ISP\Solucao\Produto.cs" />
     <Compile Include="SOLID\LSP\QuebrandoRegra\Laranja.cs" />
     <Compile Include="SOLID\LSP\QuebrandoRegra\Toranja.cs" />
     <Compile Include="SOLID\LSP\Solucao\Fruta.cs" />
@@ -77,5 +104,6 @@
   <ItemGroup>
     <Content Include=".gitignore" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

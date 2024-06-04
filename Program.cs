@@ -1,4 +1,5 @@
-﻿using Interfaces.SOLID.LSP.QuebrandoRegra;
+﻿using Interfaces.SOLID.ISP.QuebrandoRegra;
+using Interfaces.SOLID.LSP.QuebrandoRegra;
 using Interfaces.SOLID.OCP.Solucao;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,8 @@ namespace Interfaces
             cliente.Salvar();
 
             var clienteSRP = new Interfaces.SOLID.SRD.Solucao.Cliente();
-            cliente.Nome = "Lucas";
-            cliente.Telefone = "12342365367";
+            clienteSRP.Nome = "Lucas";
+            clienteSRP.Telefone = "12342365367";
             try
             {
                 new Interfaces.SOLID.SRD.Solucao.Validacao().Validar(clienteSRP);
@@ -54,6 +55,53 @@ namespace Interfaces
             Interfaces.SOLID.LSP.Solucao.Fruta toranja2 = new Interfaces.SOLID.LSP.Solucao.Toranja();
             Console.WriteLine(toranja2.Cor());
 
+            // SOLID - ISP
+            //Errado
+            Interfaces.SOLID.ISP.QuebrandoRegra.IGenerica clienteISP = new Interfaces.SOLID.ISP.QuebrandoRegra.Cliente();
+            Interfaces.SOLID.ISP.QuebrandoRegra.IGenerica produto = new Interfaces.SOLID.ISP.QuebrandoRegra.Produto();
+            Interfaces.SOLID.ISP.QuebrandoRegra.IGenerica fornecedor = new Interfaces.SOLID.ISP.QuebrandoRegra.Fornecedor();
+
+            Salvar(clienteISP);
+            Salvar(produto);
+            Salvar(fornecedor);
+
+            //Solução
+            Interfaces.SOLID.ISP.Solucao.IPagamento clienteISP2 = new Interfaces.SOLID.ISP.Solucao.Cliente();
+            Interfaces.SOLID.ISP.Solucao.IGenerica produto2 = new Interfaces.SOLID.ISP.Solucao.Produto();
+            Interfaces.SOLID.ISP.Solucao.IPagamento fornecedor2 = new Interfaces.SOLID.ISP.Solucao.Fornecedor();
+                                                                                       
+            Salvar2(clienteISP2);
+            Salvar2(produto2);
+            Salvar2(fornecedor2);
+
+            //Solução 2
+            Interfaces.SOLID.ISP.Solucao2.IPagamento clienteISP3 = new Interfaces.SOLID.ISP.Solucao2.Cliente();
+            Interfaces.SOLID.ISP.Solucao2.IGenerica produto3 = new Interfaces.SOLID.ISP.Solucao2.Produto();
+            Interfaces.SOLID.ISP.Solucao2.IPagamento fornecedor3 = new Interfaces.SOLID.ISP.Solucao2.Fornecedor();
+
+            Salvar3(clienteISP3);
+            Salvar3(produto3);
+            Salvar3(fornecedor3);
+
+            // SOLID - DIP
+            // Solução 1 - Utilizando dependência de interface
+            var clienteDIP = new Interfaces.SOLID.DIP.Solucao.Cliente();
+            clienteDIP.Nome = "Lucas";
+            clienteDIP.Telefone = "12342365367";
+            try
+            {
+                new Interfaces.SOLID.DIP.Solucao.Validacao().Validar(clienteDIP);
+                //Interfaces.SOLID.DIP.Solucao.IRepositorio repositorio = new Interfaces.SOLID.DIP.Solucao.Repositorio();
+                Interfaces.SOLID.DIP.Solucao.IRepositorio repositorio = new Interfaces.SOLID.DIP.Solucao.RepositorioEmTexto(); // Agora não existe acoplamento forte, pois agora depende da interface
+                repositorio.Salvar(ref clienteDIP);
+                //Interfaces.SOLID.DIP.Solucao.ISms smsSender = new Interfaces.SOLID.DIP.Solucao.SmsOi(); // Solução 2 - Utilizando injeção de dependência 
+                Interfaces.SOLID.DIP.Solucao.ISms smsSender = new Interfaces.SOLID.DIP.Solucao.SmsVivo(); // Solução 2 - Utilizando injeção de dependência 
+                new Interfaces.SOLID.DIP.Solucao.Sms().Enviar(clienteDIP, smsSender);
+            }                        
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao validar a mensagem {ex.Message}");
+            }
 
 
             //Console.WriteLine("=================== TUP ==================");
@@ -74,6 +122,36 @@ namespace Interfaces
             //Console.WriteLine("Digite");
 
             Console.ReadKey();
+        }
+
+        // overload
+        private static void Salvar3(SOLID.ISP.Solucao2.IPagamento pagamento)
+        {
+            pagamento.Pagar();
+        }
+        private static void Salvar3(SOLID.ISP.Solucao2.IGenerica generica)
+        {
+            generica.Id = 1;
+            generica.Salvar();
+        }
+        
+        // overload
+        private static void Salvar2(SOLID.ISP.Solucao.IPagamento pagamento)
+        {
+            pagamento.Id = 1;
+            pagamento.Salvar();
+        }
+        private static void Salvar2(SOLID.ISP.Solucao.IGenerica generica)
+        {
+            generica.Id = 1;
+            generica.Salvar();
+        }
+
+
+        private static void Salvar(IGenerica generica)
+        {
+            generica.Id = 1;
+            generica.Salvar();
         }
     }
 }
